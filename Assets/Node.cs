@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class Node
 {
+    public GridObject gridObject;
+
     public bool passable { get; set; }
 }
