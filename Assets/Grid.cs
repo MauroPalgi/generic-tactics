@@ -95,13 +95,19 @@ public class Grid : MonoBehaviour
         if (CheckBoundry(positionOnGrid))
         {
             grid[positionOnGrid.x, positionOnGrid.y].gridObject = gridObject;
-        }else{
+        }
+        else
+        {
             Debug.Log("OUT OF BOUNDRIES");
         }
     }
 
     internal GridObject GetPlacedObject(Vector2Int gridPosition)
     {
-        return grid[gridPosition.x, gridPosition.y].gridObject;
+        if (CheckBoundry(gridPosition))
+        {
+            return grid[gridPosition.x, gridPosition.y].gridObject;
+        }
+        return null;
     }
 }
