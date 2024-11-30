@@ -5,6 +5,13 @@ using UnityEngine;
 public class Node
 {
     public GridObject gridObject;
+    public float elevation;
+    public bool passable;
 
-    public bool passable { get; set; }
+    public override string ToString()
+    {
+        string objDescription = gridObject != null ? gridObject.ToString() : "None";
+        return $"Elevation: {elevation:F2}, Passable: {passable}, GridObject: {objDescription}";
+    }
+
 }
