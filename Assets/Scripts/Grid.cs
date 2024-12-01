@@ -6,8 +6,8 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     Node[,] grid;
-    [SerializeField] private int width = 100;
-    [SerializeField] private int length = 100;
+    public int width = 100;
+    public int length = 100;
     [SerializeField] private float cellSize = 1f;
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask terrainLayer;
@@ -112,13 +112,13 @@ public class Grid : MonoBehaviour
 
     }
 
-    private Vector3 GetWorldPosition(int x, int y, bool elevation = false)
+    public Vector3 GetWorldPosition(int x, int y, bool elevation = false)
     {
         Vector3 worldPosition = new Vector3(x * cellSize, elevation == true ? grid[x, y].elevation : 0f, y * cellSize) + transform.position;
         return worldPosition;
     }
 
-    public bool CheckBoundary(Vector2Int positionOnGrid)
+    public bool CheckBoundry(Vector2Int positionOnGrid)
     {
         return positionOnGrid.x >= 0 && positionOnGrid.x < length && positionOnGrid.y >= 0 && positionOnGrid.y < width;
     }
@@ -134,7 +134,7 @@ public class Grid : MonoBehaviour
 
     public void PlaceObject(Vector2Int positionOnGrid, GridObject gridObject)
     {
-        if (CheckBoundary(positionOnGrid))
+        if (CheckBoundry(positionOnGrid))
         {
             grid[positionOnGrid.x, positionOnGrid.y].gridObject = gridObject;
         }
@@ -146,7 +146,7 @@ public class Grid : MonoBehaviour
 
     public GridObject GetPlacedObject(Vector2Int gridPosition)
     {
-        return CheckBoundary(gridPosition) ? grid[gridPosition.x, gridPosition.y].gridObject : null;
+        return CheckBoundry(gridPosition) ? grid[gridPosition.x, gridPosition.y].gridObject : null;
     }
 
     public void LogAllNodes()
@@ -158,5 +158,15 @@ public class Grid : MonoBehaviour
                 Debug.Log(grid[x, y].ToString());
             }
         }
+    }
+
+    public bool CheckBoundry(int x, int y)
+    {
+        return CheckBoundry(new Vector2Int(x, y));
+    }
+
+    public bool CheckWalkable(int pos_x, int pos_y)
+    {
+        return grid[pos_x, pos_y].passable;
     }
 }
