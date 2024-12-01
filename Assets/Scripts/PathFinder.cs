@@ -35,10 +35,10 @@ public class PathNode : IEquatable<PathNode>
     }
 }
 
-[RequireComponent(typeof(Grid))]
+[RequireComponent(typeof(TacticGrid))]
 public class PathFinder : MonoBehaviour
 {
-    [SerializeField] public Grid gridMap;
+    [SerializeField] public TacticGrid gridMap;
     [SerializeField] PathNode[,] pathNodes;
 
     void Start()
@@ -50,7 +50,7 @@ public class PathFinder : MonoBehaviour
     {
         if (gridMap == null)
         {
-            gridMap = GetComponent<Grid>();
+            gridMap = GetComponent<TacticGrid>();
         }
 
         pathNodes = new PathNode[gridMap.length, gridMap.width];

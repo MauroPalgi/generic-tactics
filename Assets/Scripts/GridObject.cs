@@ -6,7 +6,7 @@ using UnityEngine;
 public class GridObject : MonoBehaviour
 {
 
-    [SerializeField] Grid targetGrid;
+    [SerializeField] TacticGrid targetGrid;
 
     private void Start()
     {

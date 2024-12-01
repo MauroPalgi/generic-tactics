@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridControl : MonoBehaviour
 {
-    [SerializeField] Grid targetGrid;
+    [SerializeField] TacticGrid targetGrid;
     [SerializeField] LayerMask terrainLayerMask;
 
     PathFinder pathFinder;
@@ -32,10 +32,10 @@ public class GridControl : MonoBehaviour
                 GridObject gridObject = targetGrid.GetPlacedObject(gridPosition);
                 if (gridObject == null)
                 {
-                    Debug.Log(gridPosition.x + " - " + gridPosition.y);
+                    
                 }else
                 {
-                    Debug.Log(gridObject.name);
+                    
                 }
                 */
             }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class TacticGrid : MonoBehaviour
 {
     Node[,] grid;
     public int width = 100;
@@ -14,7 +14,7 @@ public class Grid : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Awaker");
+        
         GenerateGrid();
     }
 
@@ -83,7 +83,7 @@ public class Grid : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Debug.Log("OnDrawGizmos");
+        
 
         if (grid == null)
         {
@@ -140,7 +140,7 @@ public class Grid : MonoBehaviour
         }
         else
         {
-            Debug.LogError("OUT OF BOUNDARIES");
+            
         }
     }
 
@@ -155,7 +155,7 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < length; x++)
             {
-                Debug.Log(grid[x, y].ToString());
+                
             }
         }
     }
