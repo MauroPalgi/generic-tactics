@@ -8,19 +8,20 @@ public class TacticGrid : MonoBehaviour
     Node[,] grid;
     public int width = 100;
     public int length = 100;
-    [SerializeField] private float cellSize = 1f;
+    [SerializeField] private float cellSize = 3f;
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] LayerMask terrainLayer;
 
     private void Awake()
     {
-        
+
         GenerateGrid();
     }
 
     private void GenerateGrid()
     {
         grid = new Node[length, width];
+
         for (int y = 0; y < width; y++)
         {
             for (int x = 0; x < length; x++)
@@ -83,7 +84,7 @@ public class TacticGrid : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        
+
 
         if (grid == null)
         {
@@ -125,7 +126,13 @@ public class TacticGrid : MonoBehaviour
 
     public Vector2Int GetGridPosition(Vector3 worldPosition)
     {
-        worldPosition -= transform.position;
+
+        // worldPosition -= transform.position;
+
+        Debug.Log("World: " + worldPosition);
+
+        worldPosition.x += cellSize / 2;
+        worldPosition.y += cellSize / 2;
         return new Vector2Int(
             Mathf.FloorToInt(worldPosition.x / cellSize),
             Mathf.FloorToInt(worldPosition.z / cellSize)
@@ -140,7 +147,7 @@ public class TacticGrid : MonoBehaviour
         }
         else
         {
-            
+
         }
     }
 
@@ -155,7 +162,7 @@ public class TacticGrid : MonoBehaviour
         {
             for (int x = 0; x < length; x++)
             {
-                
+
             }
         }
     }
@@ -169,4 +176,16 @@ public class TacticGrid : MonoBehaviour
     {
         return grid[pos_x, pos_y].passable;
     }
+
+    internal List<Vector3> ConvertPathNodesToWorlPosition(List<PathNode> path)
+    {
+        List<Vector3> worldPosition = new List<Vector3>();
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            worldPosition.Add(GetWorldPosition(path[i].pos_x, path[i].pos_y, true));
+        }
+        return worldPosition;
+    }
+
 }
