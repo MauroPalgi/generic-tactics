@@ -9,6 +9,8 @@ public class CameraControl : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] float keyboardInputSensitivity = 10f;
     [SerializeField] float mouseInputSensitivity = 0.4f;
+    [SerializeField] Transform bottomLeftBorder;
+    [SerializeField] Transform topRightBorder;
     Vector3 input;
     Vector3 pointOfOrigin;
 
@@ -31,8 +33,11 @@ public class CameraControl : MonoBehaviour
 
     private void MoveCamera()
     {
-
-        transform.position += (input * Time.deltaTime);
+        Vector3 position = transform.position;
+        position += (input * Time.deltaTime);
+        position.x = Mathf.Clamp(position.x, bottomLeftBorder.position.x, topRightBorder.position.x);
+        position.z = Mathf.Clamp(position.z, bottomLeftBorder.position.z, topRightBorder.position.z);
+        transform.position = position;
 
     }
 
