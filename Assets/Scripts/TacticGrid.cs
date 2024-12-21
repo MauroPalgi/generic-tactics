@@ -105,7 +105,7 @@ public class TacticGrid : MonoBehaviour
                 for (int x = 0; x < length; x++)
                 {
                     Vector3 pos = GetWorldPosition(x, y, true);
-                    Gizmos.color = grid[x, y].passable ? Color.white : Color.red;
+                    Gizmos.color = grid[x, y].passable ? Color.green : Color.red;
                     Gizmos.DrawCube(pos, Vector3.one * cellSize * 0.1f);
                 }
             }
