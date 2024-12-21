@@ -51,6 +51,7 @@ public class GridControl : MonoBehaviour
 
         for (int i = 0; i < path.Count - 1; i++)
         {
+            Gizmos.color = Color.black;
             Gizmos.DrawLine(targetGrid.GetWorldPosition(path[i].pos_x, path[i].pos_y, true), targetGrid.GetWorldPosition(path[i + 1].pos_x, path[i + 1].pos_y, true));
         }
     }

@@ -27,7 +27,13 @@ public class MoveCharacter : MonoBehaviour
             if (Physics.Raycast(ray, out hit, float.MaxValue, terrainLayerMask))
             {
                 Vector2Int gridPosition = targetGrid.GetGridPosition(hit.point);
-                path = pathFinder.FindPath(targetCharacter.positionOnGrid.x, targetCharacter.positionOnGrid.y, gridPosition.x, gridPosition.y);
+                Debug.Log(gridPosition);
+                path = pathFinder.FindPath(
+                    targetCharacter.positionOnGrid.x,
+                    targetCharacter.positionOnGrid.y,
+                    gridPosition.x,
+                    gridPosition.y
+                );
                 if (path == null)
                 {
                     return;
