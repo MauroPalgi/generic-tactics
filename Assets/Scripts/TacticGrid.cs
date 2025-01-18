@@ -126,11 +126,7 @@ public class TacticGrid : MonoBehaviour
 
     public Vector2Int GetGridPosition(Vector3 worldPosition)
     {
-
-        // worldPosition -= transform.position;
-
         Debug.Log("World: " + worldPosition);
-
         worldPosition.x += cellSize / 2;
         worldPosition.y += cellSize / 2;
         return new Vector2Int(
@@ -186,6 +182,15 @@ public class TacticGrid : MonoBehaviour
             worldPosition.Add(GetWorldPosition(path[i].pos_x, path[i].pos_y, true));
         }
         return worldPosition;
+    }
+
+    public Vector3 GetRandomGridWorldPosition()
+    {
+        int x = UnityEngine.Random.Range(0, width);
+        int y = UnityEngine.Random.Range(0, length);
+        Debug.Log(x);
+        Debug.Log(y);
+        return GetWorldPosition(x, y);
     }
 
 }
